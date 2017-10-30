@@ -1,0 +1,39 @@
+<html>
+	<head>
+		<title>Exemplos Vue</title>
+	</head>
+	<body>
+		<div id="app">
+			<input type="text" v-model="task" v-on:keyup.enter="addTask">
+			<button v-on:click="addTask">Add</button>
+			<ul>
+				<li v-on:click="remove(t)" v-for="t of tasks">{{t}}</li>
+			</ul>	
+		</div>
+	</body>
+	<script type="text/javascript" src="https://unpkg.com/vue"></script>
+	<script>
+		var app = new Vue({
+			el: '#app',
+			data:{
+				task:"",
+				tasks:[]
+			},
+			methods:{
+				addTask:function(){
+					this.tasks.push(this.task);
+					this.task = "";
+				},
+				remove:function(item){
+					for(var i =0 ; i < this.tasks.length; i++)
+					{
+						if(this.tasks[i] == item)
+						{
+							this.tasks.splice(i,1);
+						}
+					}
+				}
+			}
+		});
+	</script>
+</html>
